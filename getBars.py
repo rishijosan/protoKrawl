@@ -11,7 +11,7 @@ import json
 
 loc = '/media/sf_G_DRIVE/sharedWorkspace/protoKrawl/json/'
 
-app = Flask(__name__)
+app = Flask(__name__ ,static_url_path='')
 
 #client = foursquare.Foursquare(client_id='ETWY3CHBMEFXU2DZZZ1DKTO2YPMNKJWNZTVSKBABBXTQEDW2', client_secret='X0H2FBGJ53ANMC23YHWQKI0LV5I52F12MWZMF5002EOJ0NSR', redirect_uri='http://127.0.0.1:5000/')
 
@@ -45,6 +45,11 @@ def getVenue():
         #result = json.dumps(locList)
         return jsonify(locList)
     
+    
+@app.route('/crawl')
+def crawl():
+    return app.send_static_file('index.html')
+
 
 if __name__ == "__main__":
     #app.debug = True

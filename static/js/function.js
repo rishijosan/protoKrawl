@@ -5,13 +5,17 @@ $("#timeFrom").timepicker({
 });
 
 function getPosition(){
+	console.log("Getting Location");
 	if(navigator.geolocation)
-		navigator.geolocation.getCurrentPosition(showPosition);
+		navigator.geolocation.getCurrentPosition(showPosition(position));
 	else
-		x.innerHTML = "Geolocation is not supported by this browser.";
+		console.log("NOT SUPPORTED");
+		//x.innerHTML = "Geolocation is not supported by this browser.";
 }
 
 function showPosition(position){
+	console.log("This shit works");
+	console.log(position);
 	$.get('functions/cityLookup.php',{'lat': position.coords.latitude,'lon':position.coords.longitude},function(userdata){
 		user_array = jQuery.parseJSON(userdata);
 		for(i in user_array){
@@ -31,7 +35,7 @@ function showPosition(position){
 		}
 	});
 	
-	$.get('functions/cityLookup.php',{'lat': position.coords.latitude,'lon':position.coords.longitude},function(userdata){
+	$.get('getVenue',{'lat': position.coords.latitude,'lon':position.coords.longitude},function(userdata){
 		
 	});
 	
